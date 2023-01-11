@@ -1,13 +1,14 @@
 import RestaurantItem from './RestaurantItem';
 import PropTypes from 'prop-types';
+import Grid from './styled/Grid';
 
-export default function RestaurantList({ restaurants }) {
+export default function RestaurantList({ restaurants, isDetails }) {
   return (
-    <div className="grid">
+    <Grid>
       {restaurants.map((restaurant) => (
-        <RestaurantItem key={restaurant.id} {...restaurant} />
+        <RestaurantItem key={restaurant.id} {...restaurant} isDetails={isDetails} />
       ))}
-    </div>
+    </Grid>
   );
 }
 
@@ -18,4 +19,9 @@ RestaurantList.propTypes = {
     name: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
   })).isRequired,
+  isDetails: PropTypes.bool.isRequired,
 };
+
+RestaurantList.defaultProps = {
+  isDetails: false,
+}
